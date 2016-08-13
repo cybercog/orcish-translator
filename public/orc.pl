@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
 # Pass a HTML page through the ork-speak filter routine. This script
 # is fairly primitive and I suspect that it doesn't handle unusual
@@ -6,10 +6,16 @@
 #
 # Revision History (latest first):
 # -------------------------------------------------------------------
-# 01mar02  RJHall  Initial version.
+# 2016-09-13  a-komarev Added JSON response support & moved lib.
+# 2002-03-01  RJHall  Initial version.
 
 require 5.000;
 require orklib;
+
+use Cwd qw(abs_path);
+use FindBin;
+use lib abs_path("$FindBin::Bin/../lib");
+use JSON;
 
 # Modify the HTML-formatted string
 
@@ -91,25 +97,19 @@ foreach $ENTRY ( @PAIRS ) {
 $STATE=0;
 $CONTENT=0;
 
-# Initialize the output
-print "Content-type: text/html\n\n";
-print "<HTML>\n<HEAD>\n<TITLE>Ork Translation</TITLE>\n</HEAD>\n\n";
-print "<BODY BGCOLOR=\"\#006600\">\n";
-print "<BR><BR><P><TABLE BORDER=0 WIDTH=\"90%\" CELLPADDING=16 ALIGN=center>\n";
-print "<TR><TD BGCOLOR=\"white\">\n<CENTER>\n";
-print "<IMG SRC=\"http://hiddenway.tripod.com/images/titles/waaagh.gif\" ";
-print "WIDTH=336 HEIGHT=72>\n</CENTER><HR NOSHADE SIZE=1>\n";
-
+$OUTPUT = '';
 # Filter each of the lines
 for ( $I=0; $I<=$#LINES; $I++ ) {
   # Convert the HTML-formatted string
   $LINE=&modify_HTML( $LINES[$I], \$STATE );
-
-  # Write to standard output
-  print "$LINE<BR>\n";
+  $OUTPUT .= $LINE . "\n";
 }
 
-print "</TD></TR></TABLE>\n";
-print "</BODY>\n</HTML>\n";
+my %rec_hash = ('result' => $OUTPUT);
+my $json = encode_json \%rec_hash;
+
+# Initialize the output
+print "Content-type: text/json\n\n";
+print "$json";
 
 exit;

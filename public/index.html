@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orcish translator</title>
+    <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,cyrillic,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" id="Heading">
+            <h1>Orcish Translator</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Inglish</label>
+                    <textarea name="message" id="Translation__Input" rows="10" class="form-control" required placeholder="Write text 'ere boss..."></textarea>
+                </div>
+            </div>
+            <div class="col-md-2 text-xs-center m-t-3">
+                <button id="Translation__TranslateButton" class="btn btn-danger btn-lg" type="button">Du it! &raquo;</button>
+                <div id="Translation__Hint">CTRL + ENTA</div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Orcish</label>
+                    <textarea id="Translation__Result" class="form-control" rows="10" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function($) {
+            $('#Translation__Input').keydown(function (e) {
+                if (e.ctrlKey && e.keyCode == 13) {
+                    $('#Translation__TranslateButton').click();
+                }
+            });
+
+            $('#Translation__TranslateButton').on('click', function () {
+                var message = $('#Translation__Input').val(),
+                translationResult = $('#Translation__Result');
+
+                var jqxhr = $.ajax({
+                  url: './orc.pl',
+                  method: 'POST',
+                  dataType: 'json',
+                  data: {
+                    message: message
+                }
+                })
+                .done(function(response) {
+                    translationResult.html(response.result);
+                })
+                .fail(function(response) {
+                    alert("Sumthing bad az 'appened. Check da console log!");
+                    console.log(response)
+                });
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>

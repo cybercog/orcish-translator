@@ -1,0 +1,36 @@
+body {
+    background: rgb(0, 102, 0);
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+.form-control {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    border: .2rem solid rgba(0, 0, 0, .3);
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    border-color: rgba(255, 0, 0, .4);
+}
+
+.btn-danger {
+    background-color: rgb(153, 30, 27);
+    border-color: rgb(124, 30, 27);
+    transition: all 0.3s;
+}
+
+#Heading {
+    background: transparent;
+    text-align: center;
+    padding: 4rem 2rem 1rem;
+}
+
+#Translation__Hint {
+    margin-top: 1rem;
+    /*font-weight: bolder;*/
+    opacity: .6;
+    font-size: 1.2rem;
+}

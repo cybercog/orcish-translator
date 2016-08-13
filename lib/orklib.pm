@@ -22,10 +22,10 @@ package orklib;
 #
 # Revision History (latest first):
 # ----------------------------------------------------------------------
-# 02apr09  RJHall  A number of revisions were made based upon
-#                  suggestions and some web sources.
-# 22aug05  RJHall  4 additions (pathetic=>weedy, blue=>bloo, &c.)
-# 03mar02  RJHall  Initial version
+# 2009-08-02  RJHall  A number of revisions were made based upon
+#                     suggestions and some web sources.
+# 2005-08-22  RJHall  4 additions (pathetic=>weedy, blue=>bloo, &c.)
+# 2002-03-03  RJHall  Initial version
 
 # Replace letter combinations
 
