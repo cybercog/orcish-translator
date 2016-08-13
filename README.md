@@ -1,4 +1,4 @@
-# Orkish Trasnlator
+# Orkish Translator
 
 Orkish language translator. It can translate English to Orcish at this moment.
 
