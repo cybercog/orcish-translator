@@ -6,7 +6,7 @@
 #
 # Revision History (latest first):
 # -------------------------------------------------------------------
-# 2016-09-13  a-komarev Added JSON response support & moved lib.
+# 2016-09-13  antonkomarev Added JSON response support & moved lib.
 # 2002-03-01  RJHall  Initial version.
 
 require 5.000;
