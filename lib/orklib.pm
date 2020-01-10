@@ -64,7 +64,7 @@ sub replace_component
   s/\B(\w)ing$/$1in\'/;
   s/\B(\w)ings$/$1in\'s/;
   s/(\w\w\w)ing$/$1in\'/;
-  s/(\w\w\w)ings$/$1in\s/;
+  s/(\w\w\w)ings$/$1in\'s/;
   s/ise$/iz/;
   s/ium$/yum/;
   s/ive$/iv/;
